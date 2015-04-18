@@ -25,3 +25,5 @@ libraryDependencies ++= Seq(
 webModuleDirectory in TestAssets := webTarget.value / "node-modules" / "test"
 
 scalariformSettings
+
+javaOptions in Test += "-Dconfig.resource=test.conf"
