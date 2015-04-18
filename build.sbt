@@ -1,5 +1,7 @@
 import com.typesafe.sbt.web.Import.WebKeys._
 
+import com.typesafe.sbt.packager.docker._
+
 name := """scala-play-sample"""
 
 version := "1.0-SNAPSHOT"
@@ -30,3 +32,7 @@ webModuleDirectory in TestAssets := webTarget.value / "node-modules" / "test"
 scalariformSettings
 
 javaOptions in Test += "-Dconfig.resource=test.conf"
+
+maintainer in Docker := "Akihiro KATOU <kaotu.akihiro@gmail.com>"
+
+dockerBaseImage := "dockerfile/java:oracle-java8"
