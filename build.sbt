@@ -1,3 +1,5 @@
+import com.typesafe.sbt.web.Import.WebKeys._
+
 name := """scala-play-sample"""
 
 version := "1.0-SNAPSHOT"
@@ -12,7 +14,14 @@ libraryDependencies ++= Seq(
   cache,
   ws,
   "org.webjars" %% "webjars-play" % "2.3.0-2",
-  "org.webjars" % "jquery" % "1.11.1"
+  "org.webjars" % "jquery" % "1.11.1",
+  "org.mockito" % "mockito-all" % "1.10.8" % "test",
+  "com.googlecode.jmockit" % "jmockit" % "1.7" % "test",
+  "org.webjars" % "mocha" % "2.0.1" % "test",
+  "org.webjars" % "chai" % "1.9.1" % "test",
+  "org.webjars" % "sinonjs" % "1.7.3" % "test"
 )
+
+webModuleDirectory in TestAssets := webTarget.value / "node-modules" / "test"
 
 scalariformSettings
