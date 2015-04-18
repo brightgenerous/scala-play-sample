@@ -1,0 +1,14 @@
+# Routes
+# ~~~~
+
+# User CRUD
+## index
+GET     /users                      controllers.api.UsersController.index
+## create
+POST    /users                      controllers.api.UsersController.create
+## read
+GET     /users/:id                  controllers.api.UsersController.show(id: Int)
+## update
+PUT     /users/:id                  controllers.api.UsersController.update(id: Int)
+## delete
+DELETE  /users/:id                  controllers.api.UsersController.delete(id: Int)
