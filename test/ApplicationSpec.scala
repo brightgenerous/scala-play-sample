@@ -13,18 +13,24 @@ import play.api.test.Helpers._
 @RunWith(classOf[JUnitRunner])
 class ApplicationSpec extends Specification {
 
+  def app = FakeApplication(additionalConfiguration = inMemoryDatabase())
+
   "Application" should {
 
-    "send 404 on a bad request" in new WithApplication {
-      route(FakeRequest(GET, "/boum")) must beNone
+    "send 404 on a bad request" in {
+      running(app) {
+        route(FakeRequest(GET, "/boum")) must beNone
+      }
     }
 
-    "render the index page" in new WithApplication {
-      val home = route(FakeRequest(GET, "/")).get
+    "render the index page" in {
+      running(app) {
+        val home = route(FakeRequest(GET, "/")).get
 
-      status(home) must equalTo(OK)
-      contentType(home) must beSome.which(_ == "text/html")
-      contentAsString(home) must contain("Your new application is ready.")
+        status(home) must equalTo(OK)
+        contentType(home) must beSome.which(_ == "text/html")
+        contentAsString(home) must contain("Your new application is ready.")
+      }
     }
   }
 }
