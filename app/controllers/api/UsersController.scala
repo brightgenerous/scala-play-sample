@@ -10,6 +10,7 @@ import play.api.mvc._
 
 import com.sample.models._
 import com.sample.models.DAO._
+import com.sample.services._
 
 trait UsersControllerTrait {
 
@@ -61,13 +62,8 @@ trait UsersControllerTrait {
   }
 
   def show(id: Int) = DBAction { implicit s =>
-    val res = Users.filter(_.id === id).firstOption match {
-      case Some(user) => {
-        val json = Json.obj(
-          "data" -> userToJson(user)
-        )
-        Ok(json)
-      }
+    val res = UserJsonService.get(id) match {
+      case Some(json) => Ok(json)
       case _ => BadRequest
     }
     res.as("application/json")
