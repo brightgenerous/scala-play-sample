@@ -1,0 +1,6 @@
+# Routes
+# ~~~~
+
+# User Sub
+## index
+GET     /users_sub                  controllers.api.sub.UsersSubController.index
